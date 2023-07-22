@@ -1,0 +1,469 @@
+#!/bin/bash
+
+# Written by Mauricio Pamplona Segundo & Azim Ibragimov for Program Design
+# try_project6_suffix is a Unix shell script that will be used to test project 6.
+# To use the script, copy it into the same directory as your scource file
+# Set execute permission for the file by issuing the command:
+# chmod +x try_project6_suffix
+# Compile your program, producing a.out as the executable
+# To run the script, type 
+# ./try_project6_suffix
+# The user input from the script will not be shown on the screen.
+# Compare the results from your program with the expected results on the test cases.
+
+COUNT=0
+function newCase {
+	tput setaf 2
+	echo '===================================================='
+	tput setaf 3
+	COUNT=$((COUNT+1))
+	echo 'Example #'$COUNT
+	tput sgr 0
+}
+function divCase {
+	echo
+	tput setaf 2
+	echo '----------------------------------------------------'
+	tput setaf 3
+	echo 'Expected:'
+	tput sgr 0
+}
+function endCase {
+    tput setaf 2
+    echo '===================================================='
+    tput sgr 0
+    echo;echo;echo;
+}
+
+
+################################################################################
+
+
+newCase
+./a.out <<-EOF
+q
+EOF
+divCase
+cat << EOF
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: q
+EOF
+endCase
+
+
+################################################################################
+
+
+newCase
+./a.out <<-EOF
+s
+Y
+p
+p
+o
+IEEE COMPUTER SOCIETY
+q
+EOF
+divCase
+cat << EOF
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: s
+Enter t-shirt size: Y
+No t-shirt found!
+
+Enter operation code: p
+No t-shirt found!
+
+Enter operation code: p
+No t-shirt found!
+
+Enter operation code: o
+Enter student organization name: IEEE COMPUTER SOCIETY
+No t-shirt found!
+
+Enter operation code: q
+EOF
+endCase
+
+
+################################################################################
+
+
+newCase
+./a.out <<-EOF
+h
+a
+GAMEDEV CLUB
+M
+1.18
+223
+o
+ROBOBULLS
+o
+GAMEDEV CLUB
+q
+EOF
+divCase
+cat << EOF
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: h
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: a
+Enter student organization name: GAMEDEV CLUB
+Enter t-shirt size: M
+Enter price: 1.18
+Enter quantity: 223
+
+Enter operation code: o
+Enter student organization name: ROBOBULLS
+No t-shirt found!
+
+Enter operation code: o
+Enter student organization name: GAMEDEV CLUB
+|----------------------------------------------------|-----|-------|------|
+| Student organization                               | Sz. | Price | Qty. |
+|----------------------------------------------------|-----|-------|------|
+| GAMEDEV CLUB                                       | M   |  1.18 |  223 |
+|----------------------------------------------------|-----|-------|------|
+
+Enter operation code: q
+EOF
+endCase
+
+
+################################################################################
+
+
+newCase
+./a.out <<-EOF
+a
+ASSOCIATION FOR COMPUTING MACHINERY
+L
+11.90
+755
+i
+o
+NONE
+s
+Y
+p
+h
+a
+SOCIETY OF COMPETITIVE PROGRAMMERS
+XS
+15.43
+143
+h
+a
+ASSOCIATION FOR COMPUTING MACHINERY
+XL
+19.65
+769
+h
+a
+GOOGLE DEVELOPER STUDENT CLUB
+S
+80.33
+46
+h
+s
+M
+i
+p
+i
+i
+i
+i
+a
+SOCIETY OF COMPETITIVE PROGRAMMERS
+XXL
+9.82
+603
+o
+NONE
+h
+q
+EOF
+divCase
+cat << EOF
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: a
+Enter student organization name: ASSOCIATION FOR COMPUTING MACHINERY
+Enter t-shirt size: L
+Enter price: 11.90
+Enter quantity: 755
+
+Enter operation code: i
+Illegal operation code!
+
+Enter operation code: o
+Enter student organization name: NONE
+No t-shirt found!
+
+Enter operation code: s
+Enter t-shirt size: Y
+No t-shirt found!
+
+Enter operation code: p
+|----------------------------------------------------|-----|-------|------|
+| Student organization                               | Sz. | Price | Qty. |
+|----------------------------------------------------|-----|-------|------|
+| ASSOCIATION FOR COMPUTING MACHINERY                | L   | 11.90 |  755 |
+|----------------------------------------------------|-----|-------|------|
+
+Enter operation code: h
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: a
+Enter student organization name: SOCIETY OF COMPETITIVE PROGRAMMERS
+Enter t-shirt size: XS
+Enter price: 15.43
+Enter quantity: 143
+
+Enter operation code: h
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: a
+Enter student organization name: ASSOCIATION FOR COMPUTING MACHINERY
+Enter t-shirt size: XL
+Enter price: 19.65
+Enter quantity: 769
+
+Enter operation code: h
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: a
+Enter student organization name: GOOGLE DEVELOPER STUDENT CLUB
+Enter t-shirt size: S
+Enter price: 80.33
+Enter quantity: 46
+
+Enter operation code: h
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: s
+Enter t-shirt size: M
+No t-shirt found!
+
+Enter operation code: i
+Illegal operation code!
+
+Enter operation code: p
+|----------------------------------------------------|-----|-------|------|
+| Student organization                               | Sz. | Price | Qty. |
+|----------------------------------------------------|-----|-------|------|
+| ASSOCIATION FOR COMPUTING MACHINERY                | L   | 11.90 |  755 |
+| SOCIETY OF COMPETITIVE PROGRAMMERS                 | XS  | 15.43 |  143 |
+| ASSOCIATION FOR COMPUTING MACHINERY                | XL  | 19.65 |  769 |
+| GOOGLE DEVELOPER STUDENT CLUB                      | S   | 80.33 |   46 |
+|----------------------------------------------------|-----|-------|------|
+
+Enter operation code: i
+Illegal operation code!
+
+Enter operation code: i
+Illegal operation code!
+
+Enter operation code: i
+Illegal operation code!
+
+Enter operation code: i
+Illegal operation code!
+
+Enter operation code: a
+Enter student organization name: SOCIETY OF COMPETITIVE PROGRAMMERS
+Enter t-shirt size: XXL
+Enter price: 9.82
+Enter quantity: 603
+
+Enter operation code: o
+Enter student organization name: NONE
+No t-shirt found!
+
+Enter operation code: h
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: q
+EOF
+endCase
+
+
+################################################################################
+
+
+newCase
+./a.out <<-EOF
+a
+GIRLS WHO CODE COLLEGE LOOP
+L
+45.29
+479
+s
+Y
+h
+i
+p
+a
+GIRLS WHO CODE COLLEGE LOOP
+XL
+11.41
+771
+o
+WOMEN IN COMPUTER SCIENCE AND ENGINEERING
+s
+L
+p
+a
+GIRLS WHO CODE COLLEGE LOOP
+XL
+o
+NONE
+q
+EOF
+divCase
+cat << EOF
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: a
+Enter student organization name: GIRLS WHO CODE COLLEGE LOOP
+Enter t-shirt size: L
+Enter price: 45.29
+Enter quantity: 479
+
+Enter operation code: s
+Enter t-shirt size: Y
+No t-shirt found!
+
+Enter operation code: h
+List of operation codes:
+	'a' for adding a t-shirt to the inventory;
+	'h' for help;
+	'o' for searching t-shirts by organization;
+	's' for searching t-shirts by size;
+	'p' for printing the inventory;
+	'q' for quit.
+
+Enter operation code: i
+Illegal operation code!
+
+Enter operation code: p
+|----------------------------------------------------|-----|-------|------|
+| Student organization                               | Sz. | Price | Qty. |
+|----------------------------------------------------|-----|-------|------|
+| GIRLS WHO CODE COLLEGE LOOP                        | L   | 45.29 |  479 |
+|----------------------------------------------------|-----|-------|------|
+
+Enter operation code: a
+Enter student organization name: GIRLS WHO CODE COLLEGE LOOP
+Enter t-shirt size: XL
+Enter price: 11.41
+Enter quantity: 771
+
+Enter operation code: o
+Enter student organization name: WOMEN IN COMPUTER SCIENCE AND ENGINEERING
+No t-shirt found!
+
+Enter operation code: s
+Enter t-shirt size: L
+|----------------------------------------------------|-----|-------|------|
+| Student organization                               | Sz. | Price | Qty. |
+|----------------------------------------------------|-----|-------|------|
+| GIRLS WHO CODE COLLEGE LOOP                        | L   | 45.29 |  479 |
+|----------------------------------------------------|-----|-------|------|
+
+Enter operation code: p
+|----------------------------------------------------|-----|-------|------|
+| Student organization                               | Sz. | Price | Qty. |
+|----------------------------------------------------|-----|-------|------|
+| GIRLS WHO CODE COLLEGE LOOP                        | L   | 45.29 |  479 |
+| GIRLS WHO CODE COLLEGE LOOP                        | XL  | 11.41 |  771 |
+|----------------------------------------------------|-----|-------|------|
+
+Enter operation code: a
+Enter student organization name: GIRLS WHO CODE COLLEGE LOOP
+Enter t-shirt size: XL
+T-shirt already exists in the inventory!
+
+Enter operation code: o
+Enter student organization name: NONE
+No t-shirt found!
+
+Enter operation code: q
+EOF
+endCase
+
+
+
+
+
